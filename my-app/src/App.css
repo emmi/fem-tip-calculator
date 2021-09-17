@@ -1,18 +1,98 @@
+:root {
+  --primary-cyan: hsl(172, 67%, 45%);
+  --secondary-cyan-1: hsl(183, 100%, 15%);
+  --secondary-cyan-2: hsl(186, 14%, 43%);
+  --secondary-cyan-3: hsl(184, 14%, 56%);
+  --secondary-cyan-4: hsl(185, 41%, 84%);
+  --secondary-cyan-5: hsl(189, 41%, 97%);
+  --white: hsl(0, 0%, 100%);
+}
+
+body {
+  font-family: "Space Mono";
+}
+
 .App {
   text-align: center;
+
+  background-color: var(--secondary-cyan-4);
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.splitter {
+  height: 20vh;
+  width: 100vw;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.splitter h1 {
+  text-transform: uppercase;
+  margin: 0;
+  width: 100px;
+  letter-spacing: 5px;
+  word-break: break-all;
+  color: var(--secondary-cyan-1);
+}
+
+.calculator {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
+
+  border-radius: 20px;
+}
+
+.settings {
+  width: 50%;
+  flex-direction: column;
+  padding: 2em;
+  display: flex;
+}
+
+.bill {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bill label {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--secondary-cyan-2);
+}
+
+.bill-input {
+  border-radius: 5px;
+  border: none;
+  padding: 7px 15px;
+  height: 30px;
+  text-align: right;
+  font-family: "Space Mono";
+  font-size: 20px;
+  color: var(--secondary-cyan-3);
+  background: url(./images/icon-dollar.svg) no-repeat scroll 14px 14px;
+  background-color: var(--secondary-cyan-5);
+}
+
+.bill-input::placeholder {
+  color: var(--secondary-cyan-3);
+}
+
+.tip-selector {
+  flex: 2;
+}
+
+.people-count {
+  flex: 1;
+}
+
+.results {
 }
