@@ -8,14 +8,26 @@
   --white: hsl(0, 0%, 100%);
 }
 
+html {
+  overflow-x: hidden;
+  background-color: var(--secondary-cyan-4);
+}
+
 body {
+  box-sizing: border-box;
   font-family: "Space Mono";
+  margin: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }
 
 .App {
   text-align: center;
 
-  background-color: var(--secondary-cyan-4);
+  width: 100vw;
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
 }
@@ -46,7 +58,7 @@ body {
   height: 400px;
   margin: 0 auto;
 
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .settings {
@@ -62,14 +74,14 @@ body {
   flex-direction: column;
 }
 
-.bill label {
+.settings label {
   text-align: left;
   font-weight: 700;
   margin-bottom: 5px;
   color: var(--secondary-cyan-2);
 }
 
-.bill-input {
+input {
   border-radius: 5px;
   border: none;
   padding: 7px 15px;
@@ -78,21 +90,78 @@ body {
   font-family: "Space Mono";
   font-size: 20px;
   color: var(--secondary-cyan-3);
-  background: url(./images/icon-dollar.svg) no-repeat scroll 14px 14px;
-  background-color: var(--secondary-cyan-5);
 }
 
-.bill-input::placeholder {
+input::placeholder {
   color: var(--secondary-cyan-3);
+}
+
+.input-field--dollar {
+  background: url(./images/icon-dollar.svg) var(--secondary-cyan-5) no-repeat
+    scroll 14px 14px;
+}
+
+.input-field--person {
+  background: url(./images/icon-person.svg) var(--secondary-cyan-5) no-repeat
+    scroll 14px 14px;
 }
 
 .tip-selector {
   flex: 2;
+  display: flex;
+  margin-top: 1.5em;
+  flex-direction: column;
+}
+
+.tip-amount-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 -10px 0 0;
+}
+
+.button {
+  background-color: var(--secondary-cyan-1);
+  border: 0;
+  box-shadow: unset;
+  padding: 7px;
+  margin: 0 10px 10px 0;
+  border-radius: 5px;
+  font-family: "Space Mono";
+  font-weight: 700;
+  color: var(--secondary-cyan-4);
+  width: 30%;
+  font-size: 20px;
+}
+
+.button--light {
+  background-color: var(--secondary-cyan-5);
+  color: var(--secondary-cyan-2);
 }
 
 .people-count {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.results {
+@media only screen and (max-width: 600px) {
+  .calculator {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .settings {
+    width: auto;
+  }
+
+  .tip-amount-buttons {
+    margin: 0 -15px 0 0;
+  }
+
+  .button {
+    width: 46%;
+    margin: 0 15px 15px 0;
+    font-size: 24px;
+  }
 }
