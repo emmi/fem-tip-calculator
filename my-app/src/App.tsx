@@ -40,7 +40,25 @@ function App() {
             ></input>
           </div>
         </div>
-        <div className="results">TODO</div>
+        <div className="results">
+          <div className="result-row">
+            <label htmlFor="" className="label--light">
+              <p className="results-row-label main-label">Tip Amount</p>
+              <p className="results-row-label sub-label">/ person</p>
+            </label>
+            <p className="result-value">$0.00</p>
+          </div>
+          <div className="result-row">
+            <label htmlFor="" className="label--light">
+              <p className="results-row-label main-label">Total</p>
+              <p className="results-row-label sub-label">/ person</p>
+            </label>
+            <p className="result-value">$0.00</p>
+          </div>
+          <div className="button-container">
+            <button className="button reset-button">Reset</button>
+          </div>
+        </div>
       </div>
     </div>
   )

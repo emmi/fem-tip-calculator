@@ -57,6 +57,7 @@ body {
   max-width: 800px;
   height: 400px;
   margin: 0 auto;
+  padding: 2em;
 
   border-radius: 30px;
 }
@@ -64,7 +65,8 @@ body {
 .settings {
   width: 50%;
   flex-direction: column;
-  padding: 2em;
+  /* padding: 2em; */
+  padding-right: 2em;
   display: flex;
 }
 
@@ -145,6 +147,59 @@ input::placeholder {
   flex-direction: column;
 }
 
+.results {
+  background-color: var(--secondary-cyan-1);
+  border-radius: 20px;
+  width: 50%;
+  flex-direction: column;
+  display: flex;
+}
+
+.result-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.results-row-label {
+  margin: 0;
+}
+
+.label--light {
+  text-align: left;
+}
+
+.main-label {
+  color: var(--white);
+}
+
+.sub-label {
+  color: var(--secondary-cyan-3);
+}
+
+.result-value {
+  color: var(--primary-cyan);
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.button-container {
+  flex: 1;
+  display: flex;
+  margin: 2em;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.reset-button {
+  background-color: var(--secondary-cyan-3);
+  width: auto;
+  margin: 0;
+  text-transform: uppercase;
+}
+
 @media only screen and (max-width: 600px) {
   .calculator {
     flex-direction: column;
@@ -153,6 +208,8 @@ input::placeholder {
 
   .settings {
     width: auto;
+    padding-right: 0em;
+    margin-bottom: 2em;
   }
 
   .tip-amount-buttons {
@@ -163,5 +220,14 @@ input::placeholder {
     width: 46%;
     margin: 0 15px 15px 0;
     font-size: 24px;
+  }
+
+  .results {
+    width: 100%;
+  }
+
+  .reset-button {
+    width: auto;
+    margin: 1em;
   }
 }
