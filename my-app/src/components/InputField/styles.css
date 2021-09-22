@@ -1,0 +1,68 @@
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+}
+
+.label-container {
+  justify-content: space-between;
+  display: flex;
+}
+
+.error {
+  color: orange;
+  font-weight: 700;
+  display: inline;
+  text-align: right;
+}
+
+input {
+  border-radius: 5px;
+  border: none;
+  padding: 7px 15px;
+  height: 30px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--secondary-cyan-1);
+  outline: none;
+}
+
+.input--empty {
+  color: var(--secondary-cyan-3);
+  box-shadow: 0 0 0 2pt orange;
+}
+
+input::placeholder {
+  color: var(--secondary-cyan-3);
+}
+
+input:hover,
+input:focus-visible {
+  box-shadow: 0 0 0 2pt var(--primary-cyan);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-field--bill {
+  background: url(../../images/icon-dollar.svg) var(--secondary-cyan-5)
+    no-repeat scroll 14px 14px;
+}
+
+.input-field--people {
+  background: url(../../images/icon-person.svg) var(--secondary-cyan-5)
+    no-repeat scroll 14px 14px;
+}

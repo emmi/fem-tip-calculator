@@ -6,6 +6,12 @@
   --secondary-cyan-4: hsl(185, 41%, 84%);
   --secondary-cyan-5: hsl(189, 41%, 97%);
   --white: hsl(0, 0%, 100%);
+
+  --basic-font: "Space Mono";
+}
+
+* {
+  font-family: var(--basic-font);
 }
 
 html {
@@ -15,7 +21,6 @@ html {
 
 body {
   box-sizing: border-box;
-  font-family: "Space Mono";
   margin: 0;
   display: block;
   width: 100vw;
@@ -24,7 +29,6 @@ body {
 
 .App {
   text-align: center;
-
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -65,15 +69,8 @@ body {
 .settings {
   width: 50%;
   flex-direction: column;
-  /* padding: 2em; */
   padding-right: 2em;
   display: flex;
-}
-
-.bill {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .settings label {
@@ -81,31 +78,6 @@ body {
   font-weight: 700;
   margin-bottom: 5px;
   color: var(--secondary-cyan-2);
-}
-
-input {
-  border-radius: 5px;
-  border: none;
-  padding: 7px 15px;
-  height: 30px;
-  text-align: right;
-  font-family: "Space Mono";
-  font-size: 20px;
-  color: var(--secondary-cyan-3);
-}
-
-input::placeholder {
-  color: var(--secondary-cyan-3);
-}
-
-.input-field--dollar {
-  background: url(./images/icon-dollar.svg) var(--secondary-cyan-5) no-repeat
-    scroll 14px 14px;
-}
-
-.input-field--person {
-  background: url(./images/icon-person.svg) var(--secondary-cyan-5) no-repeat
-    scroll 14px 14px;
 }
 
 .tip-selector {
@@ -129,11 +101,16 @@ input::placeholder {
   padding: 7px;
   margin: 0 10px 10px 0;
   border-radius: 5px;
-  font-family: "Space Mono";
   font-weight: 700;
   color: var(--secondary-cyan-4);
   width: 30%;
   font-size: 20px;
+  outline: none;
+}
+
+button:hover,
+button:focus-visible {
+  box-shadow: 0 0 0 2pt var(--primary-cyan);
 }
 
 .button--light {
@@ -141,10 +118,9 @@ input::placeholder {
   color: var(--secondary-cyan-2);
 }
 
-.people-count {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.button--selected {
+  background-color: var(--primary-cyan);
+  color: var(--secondary-cyan-1);
 }
 
 .results {
@@ -194,10 +170,18 @@ input::placeholder {
 }
 
 .reset-button {
-  background-color: var(--secondary-cyan-3);
   width: auto;
   margin: 0;
   text-transform: uppercase;
+  background-color: var(--primary-cyan);
+  color: var(--secondary-cyan-1);
+}
+
+.reset-button:disabled {
+  background-color: var(--primary-cyan);
+  opacity: 0.3;
+  color: var(--secondary-cyan-1);
+  box-shadow: 0 0 0;
 }
 
 @media only screen and (max-width: 600px) {
