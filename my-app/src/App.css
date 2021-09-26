@@ -110,7 +110,9 @@ body {
 
 button:hover,
 button:focus-visible {
-  box-shadow: 0 0 0 2pt var(--primary-cyan);
+  box-shadow: 0 0 0 2pt var(--secondary-cyan-4);
+  background-color: var(--secondary-cyan-4);
+  color: var(--secondary-cyan-1);
 }
 
 .button--light {

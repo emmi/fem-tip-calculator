@@ -4,6 +4,14 @@ import InputField from "./components/InputField"
 
 const PERCENTAGE_OPTIONS = [5, 10, 15, 25, 50]
 
+enum Percentage {
+  Five = 5,
+  Ten = 10,
+  Fifteen = 15,
+  Twentyfive = 25,
+  Fifty = 50
+}
+
 enum State {
   Changed = "CHANGED",
   NotChanged = "NOT CHANGED"
@@ -15,41 +23,66 @@ function App() {
 
   const [state, updateState] = useState(State.NotChanged)
 
-  const [selectedPercentage, setSelectedPercentage] = useState(null)
+  const [selectedButtonId, setSelectedButtonId] = useState(-1)
+  const [selectedPercentage, setSelectedPercentage] = useState(0)
 
   const [results, setResults] = useState({ tipAmount: 0, totalAmount: 0 })
 
   const onSelectPercentage = (e: any) => {
-    setSelectedPercentage(e.target.id)
-    updateState(State.Changed)
+    console.log("TARGET e.target.id", e.target.id)
+    setSelectedButtonId(parseInt(e.target.id))
+
+    if (parseInt(e.target.id) === 5 && selectedButtonId !== 5) {
+      setSelectedPercentage(0)
+    } else {
+      setSelectedPercentage(PERCENTAGE_OPTIONS[e.target.id])
+      updateState(State.Changed)
+    }
   }
 
   const onReset = (e: any) => {
     e.preventDefault()
     setBill(0)
     setPeopleCount(0)
-    setSelectedPercentage(null)
+    setSelectedPercentage(0)
+    setSelectedButtonId(-1)
     setResults({ tipAmount: 0, totalAmount: 0 })
   }
 
-  const percentageOptions = PERCENTAGE_OPTIONS.map(option => (
-    <button
-      id={option.toString()}
-      className={`button ${
-        selectedPercentage === option.toString() ? "button--selected" : ""
-      }`}
-      onClick={onSelectPercentage}
-    >
-      {option}%
-    </button>
-  )).concat(
-    <button
-      className="button button--light"
-      onClick={() => console.log("TODO")}
-    >
-      Custom
-    </button>
-  )
+  const percentageOptions = [...Array(6)].map((_, id) => {
+    if (id === 5 && selectedButtonId === 5) {
+      return (
+        <input
+          type="number"
+          id={"custom-input"}
+          className="button input-field--custom"
+          placeholder="0"
+          value={selectedPercentage}
+          pattern="^[0-9]*$"
+          onChange={(e: any) => {
+            if (!e.target.validity.patternMismatch && e.target.value >= 0) {
+              setSelectedPercentage(e.target.value)
+              updateState(State.Changed)
+            }
+          }}
+        ></input>
+      )
+    }
+
+    return (
+      <button
+        id={`${id}`}
+        className={`button ${
+          selectedPercentage === PERCENTAGE_OPTIONS[id]
+            ? "button--selected"
+            : ""
+        } ${id === 5 ? "button--light" : ""}`}
+        onClick={onSelectPercentage}
+      >
+        {id === 5 ? "Custom" : `${PERCENTAGE_OPTIONS[id]}%`}
+      </button>
+    )
+  })
 
   if (
     bill > 0 &&
@@ -85,25 +118,6 @@ function App() {
               }
             }}
           />
-          {/* <div className="bill">
-            <label htmlFor="bill">Bill</label>
-            <input
-              type="number"
-              id="bill"
-              className={`input-field--dollar ${
-                bill.toString() === "0" ? "input--empty" : ""
-              }`}
-              placeholder="0"
-              value={bill}
-              pattern="^[0-9]*$"
-              onChange={(e: any) => {
-                if (!e.target.validity.patternMismatch && e.target.value >= 0) {
-                  setBill(e.target.value)
-                  updateState(State.Changed)
-                }
-              }}
-            ></input>
-          </div> */}
           <div className="tip-selector">
             <label htmlFor="tip-amount">Select Tip %</label>
             <div className="tip-amount-buttons">{percentageOptions}</div>
@@ -119,25 +133,6 @@ function App() {
               }
             }}
           />
-          {/* <div className="people-count">
-            <label htmlFor="people-count">Number of People</label>
-            <input
-              type="number"
-              id="people-count"
-              className={`input-field--person ${
-                peopleCount.toString() === "0" ? "input--empty" : ""
-              }`}
-              placeholder="0"
-              value={peopleCount}
-              pattern="^[0-9]*$"
-              onChange={(e: any) => {
-                if (!e.target.validity.patternMismatch && e.target.value >= 0) {
-                  setPeopleCount(e.target.value)
-                  updateState(State.Changed)
-                }
-              }}
-            ></input> */}
-          {/* </div> */}
         </div>
         <div className="results">
           <div className="result-row">

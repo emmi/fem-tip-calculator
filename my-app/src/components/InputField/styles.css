@@ -66,3 +66,10 @@ input[type="number"] {
   background: url(../../images/icon-person.svg) var(--secondary-cyan-5)
     no-repeat scroll 14px 14px;
 }
+
+.input-field--custom {
+  box-sizing: border-box;
+  height: auto;
+  background-color: var(--white);
+  color: var(--secondary-cyan-1);
+}
