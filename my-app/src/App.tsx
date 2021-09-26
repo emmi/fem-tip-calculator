@@ -1,16 +1,10 @@
 import React, { useState } from "react"
 import "./App.css"
 import InputField from "./components/InputField"
+import Button from "./components/Button"
 
 const PERCENTAGE_OPTIONS = [5, 10, 15, 25, 50]
-
-enum Percentage {
-  Five = 5,
-  Ten = 10,
-  Fifteen = 15,
-  Twentyfive = 25,
-  Fifty = 50
-}
+const CUSTOM_BUTTON_ID = PERCENTAGE_OPTIONS.length
 
 enum State {
   Changed = "CHANGED",
@@ -29,10 +23,12 @@ function App() {
   const [results, setResults] = useState({ tipAmount: 0, totalAmount: 0 })
 
   const onSelectPercentage = (e: any) => {
-    console.log("TARGET e.target.id", e.target.id)
     setSelectedButtonId(parseInt(e.target.id))
 
-    if (parseInt(e.target.id) === 5 && selectedButtonId !== 5) {
+    if (
+      parseInt(e.target.id) === CUSTOM_BUTTON_ID &&
+      selectedButtonId !== CUSTOM_BUTTON_ID
+    ) {
       setSelectedPercentage(0)
     } else {
       setSelectedPercentage(PERCENTAGE_OPTIONS[e.target.id])
@@ -50,7 +46,7 @@ function App() {
   }
 
   const percentageOptions = [...Array(6)].map((_, id) => {
-    if (id === 5 && selectedButtonId === 5) {
+    if (id === CUSTOM_BUTTON_ID && selectedButtonId === CUSTOM_BUTTON_ID) {
       return (
         <input
           type="number"
@@ -70,17 +66,13 @@ function App() {
     }
 
     return (
-      <button
-        id={`${id}`}
-        className={`button ${
-          selectedPercentage === PERCENTAGE_OPTIONS[id]
-            ? "button--selected"
-            : ""
-        } ${id === 5 ? "button--light" : ""}`}
+      <Button
+        id={id}
         onClick={onSelectPercentage}
-      >
-        {id === 5 ? "Custom" : `${PERCENTAGE_OPTIONS[id]}%`}
-      </button>
+        selectedPercentage={selectedPercentage}
+        options={PERCENTAGE_OPTIONS}
+        customButtonId={CUSTOM_BUTTON_ID}
+      />
     )
   })
 
@@ -91,9 +83,7 @@ function App() {
     state === State.Changed
   ) {
     const percentage = 1 + selectedPercentage / 100
-
     const totalAmount = (bill * percentage) / peopleCount
-
     const tipAmount = totalAmount - bill / peopleCount
 
     setResults({ tipAmount, totalAmount })
